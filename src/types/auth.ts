@@ -1,8 +1,14 @@
 // src/types/auth.ts
+
+export interface AuthResponse {
+    user: User;
+    accessToken?: string;
+}
 export enum UserRole {
     admin = 'admin',
     faculty = 'faculty',
-    student = 'student'
+    student = 'student',
+    user = 'user'
 }
 
 export interface User {
@@ -11,14 +17,11 @@ export interface User {
     email: string;
     name: string;
     role: UserRole;
-    department: string | null;
+    profilePicture: string | null;
     createdAt: Date;
+    updatedAt: Date;
 }
 
-export interface AuthResponse {
-    user: User;
-    accessToken?: string;
-}
 
 
 

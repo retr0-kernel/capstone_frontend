@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { User } from '../types/auth';
 import { apiClient } from '../libs/axios';
 import { AxiosError } from 'axios';
+import toast from 'react-hot-toast';
 
 export function useAuth() {
     const queryClient = useQueryClient();
@@ -18,7 +19,7 @@ export function useAuth() {
 
             try {
                 const { data } = await apiClient.get<User>('/api/auth/user/me');
-                console.log("Flag", data)
+                console.log({"UserAuthData": data})
                 return data;
             } catch (error) {
                 // Type guard for AxiosError
@@ -37,11 +38,14 @@ export function useAuth() {
     const googleLogin = () => {
         window.location.href = 'http://localhost:5000/auth/google';
     };
-
+ 
     const handleAuthCallback = async (token: string) => {
         try {
             localStorage.setItem('accessToken', token);
             await queryClient.invalidateQueries({ queryKey: ['auth-user'] });
+            toast.success("Logged In", {
+                position: "top-right"
+            })
             navigate('/dashboard');
         } catch (error) {
             console.error('Auth callback error:', error);
