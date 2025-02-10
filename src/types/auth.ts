@@ -1,17 +1,17 @@
 // src/types/auth.ts
 
+import {Faculty} from './faculty';
+import {Admin} from './admin'
+import {Student} from './student'
+import { UserRole } from './enum';
+
+
 export interface AuthResponse {
-    user: User;
+    user: UserType;
     accessToken?: string;
 }
-export enum UserRole {
-    admin = 'admin',
-    faculty = 'faculty',
-    student = 'student',
-    user = 'user'
-}
 
-export interface User {
+export interface UserType {
     id: string;
     googleId: string;
     email: string;
@@ -20,8 +20,11 @@ export interface User {
     profilePicture: string | null;
     createdAt: Date;
     updatedAt: Date;
-}
 
+    admin: Admin | null;
+    faculty: Faculty | null;
+    student: Student | null;
+}
 
 
 

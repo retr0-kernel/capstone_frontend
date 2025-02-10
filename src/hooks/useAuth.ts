@@ -1,15 +1,22 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { User } from '../types/auth';
+
+// import { ExtendedUserType } from '../types/extended';
+
 import { apiClient } from '../libs/axios';
 import { AxiosError } from 'axios';
 import toast from 'react-hot-toast';
+import { UserType } from '../types/auth';
+// import { UserAdmin } from '../types/admin';
+// import { UserFaculty } from '../types/faculty';
+// import { UserStudent } from '../types/student';
+
 
 export function useAuth() {
     const queryClient = useQueryClient();
     const navigate = useNavigate();
 
-    const { data: user, isLoading } = useQuery<User | null>({
+    const { data: user, isLoading } = useQuery<UserType| null>({
         queryKey: ['auth-user'],
         queryFn: async () => {
             const token = localStorage.getItem('accessToken');
@@ -18,8 +25,8 @@ export function useAuth() {
             }
 
             try {
-                const { data } = await apiClient.get<User>('/api/auth/user/me');
-                console.log({"UserAuthData": data})
+                const { data } = await apiClient.get < UserType |  null>('/api/auth/user/me');
+                console.log(data)
                 return data;
             } catch (error) {
                 // Type guard for AxiosError

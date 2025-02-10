@@ -1,63 +1,15 @@
-import { Navigate, useNavigate } from "react-router-dom";
-import { UserRole } from "../types/auth";
-import { useEffect } from "react";
-import { useAuth } from "../hooks/useAuth";
-
+// src/router/roleRoutes.tsx
+import { RoleBasedRoute } from "../providers/RoleBasedProvider";
 import ManageStudent from "../pages/admin/ManageStudent";
 import ManageFaculty from "../pages/admin/ManageFaculty";
 import ManageAdmin from "../pages/admin/ManageAdmin";
-import Loading from "../components/Loading";
 import ManageUser from "../pages/admin/ManageUser";
 import Analytic from "../pages/admin/Analytic";
 import Project from "../pages/student/Project";
 import Application from "../pages/student/Application";
+import { UserRole } from "../types/enum";
 
-// Role-based Route component
-function RoleBasedRoute({
-    children,
-    allowedRoles
-}: {
-    children: React.ReactNode;
-    allowedRoles: UserRole[];
-}) {
-    const { isAuthenticated, isLoading, user } = useAuth();
-    const navigate = useNavigate();
-
-    useEffect(() => {
-
-        const token = localStorage.getItem('accessToken');
-
-        if (!isLoading && !isAuthenticated && !token) {
-            navigate('/login', { replace: true });
-        }
-
-        // Check if user has required role
-        if (!isLoading && user && !allowedRoles.includes(user.role)) {
-            navigate('/', { replace: true });
-        }
-
-    }, [isLoading, isAuthenticated, user, navigate, allowedRoles]);
-
-    if (isLoading || (localStorage.getItem('accessToken') && !isAuthenticated)) {
-        return (
-            <main className="flex h-screen items-center justify-center">
-                <Loading/>
-            </main>
-        );
-    }
-
-    if (!isAuthenticated) {
-        return <Navigate to="/login" replace />;
-    }
-
-    if (user && !allowedRoles.includes(user.role)) {
-        return <Navigate to="/" replace />;
-    }
-
-    return children;
-}
-
-export const adminRoutes = [
+const adminRoutes = [
     {
         path: "manage/students",
         element: (
@@ -97,10 +49,10 @@ export const adminRoutes = [
                 <Analytic />
             </RoleBasedRoute>
         )
-    }
-];
+    },
+] as const;
 
-export const facultyRoutes = [
+const facultyRoutes = [
     {
         path: "projects/manage",
         element: (
@@ -109,14 +61,14 @@ export const facultyRoutes = [
             </RoleBasedRoute>
         )
     }
-];
+] as const;
 
-export const studentRoutes = [
+const studentRoutes = [
     {
         path: "projects",
         element: (
             <RoleBasedRoute allowedRoles={[UserRole.student]}>
-                <Project/>
+                <Project />
             </RoleBasedRoute>
         )
     },
@@ -128,5 +80,12 @@ export const studentRoutes = [
             </RoleBasedRoute>
         )
     }
-];
+] as const;
 
+const routes = {
+    adminRoutes,
+    facultyRoutes,
+    studentRoutes
+};
+
+export default routes;

@@ -71,7 +71,7 @@ const Navbar: React.FC = () => {
         ],
         student: [
             { to: "/projects", text: "Projects", icon: FolderGit2 },
-            { to: "/applications", text: "Applications", icon: FileSpreadsheet }
+            { to: "/applications", text: "Application", icon: FileSpreadsheet }
         ]
     };
 

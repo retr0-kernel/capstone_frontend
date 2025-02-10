@@ -1,16 +1,20 @@
 
 import { useAuth } from "../hooks/useAuth";
-import { User, Shield, Mail, Key } from 'lucide-react';
+import { User, Shield, Mail, Key, KeyRound, IdCard } from 'lucide-react';
+
+import { UserRole } from "../types/enum";
 
 const Dashboard = () => {
     const { user } = useAuth();
+
+    // console.log(user)
 
     return (
         <div className="min-h-screen w-full bg-gray-50">
             {/* Header Section */}
             <header className="bg-white shadow-sm">
                 <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex justify-between items-center">
-                    <h1 className="text-3xl font-bold text-gray-900">{user?.role.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}'s   Portal</h1>
+                    <h1 className="text-3xl font-bold text-gray-900">Portal</h1>
                     
                 </div>
             </header>
@@ -70,6 +74,60 @@ const Dashboard = () => {
                                     </p>
                                 </div>
                             </div>
+
+                            {/* Admin ID Card */}
+                            { user?.role === UserRole.admin && <div className="bg-gray-50 rounded-lg p-4 flex items-start space-x-4">
+                                <div className="bg-amber-100 rounded-lg p-3">
+                                    <KeyRound className="h-6 w-6 text-amber-600" />
+                                </div>
+                                <div>
+                                    <h3 className="text-sm font-medium text-gray-500">Admin ID</h3>
+                                    <p className="mt-1 text-sm text-gray-900 truncate" title={user?.admin?.id}>
+                                        {user?.admin?.id}
+                                    </p>
+                                </div>
+                            </div>}
+
+                            {/* faculty ID Card */}
+                            {user?.role === UserRole.faculty && 
+                            <div className="bg-gray-50 rounded-lg p-4 flex items-start space-x-4">
+                                <div className="bg-amber-100 rounded-lg p-3">
+                                    <KeyRound className="h-6 w-6 text-amber-600" />
+                                </div>
+                                <div>
+                                    <h3 className="text-sm font-medium text-gray-500">Faculty ID</h3>
+                                    <p className="mt-1 text-sm text-gray-900 truncate" title={user?.faculty?.id}>
+                                        {user?.faculty?.id}
+                                    </p>
+                                </div>
+                            </div>
+                            }
+
+                            {/* student ID Card */}
+                            {user?.role === UserRole.student && <div className="bg-gray-50 rounded-lg p-4 flex items-start space-x-4">
+                                <div className="bg-amber-100 rounded-lg p-3">
+                                    <KeyRound className="h-6 w-6 text-amber-600" />
+                                </div>
+                                <div>
+                                    <h3 className="text-sm font-medium text-gray-500">Student ID</h3>
+                                    <p className="mt-1 text-sm text-gray-900 truncate" title={user?.student?.id}>
+                                        {user?.student?.id}
+                                    </p>
+                                </div>
+                            </div>}
+
+                            {user?.role === UserRole.student && <div className="bg-gray-50 rounded-lg p-4 flex items-start space-x-4">
+                                <div className="bg-indigo-100 rounded-lg p-3">
+                                    <IdCard className="h-6 w-6 text-indigo-600" />
+                                </div>
+                                <div>
+                                    <h3 className="text-sm font-medium text-gray-500">Student ID</h3>
+                                    <p className="mt-1 text-sm text-gray-900 truncate" title={user?.student?.studentId}>
+                                        {user?.student?.studentId}
+                                    </p>
+                                </div>
+                            </div>}
+
                         </div>
                     </div>
                 </div>
