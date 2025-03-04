@@ -1,0 +1,63 @@
+/Users/pwm-c0-50188/Desktop/capstone_frontend
+├── README.md
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── public
+│   ├── Logo-2.png
+│   ├── crops.jpg
+│   ├── smartcity.jpg
+│   └── vite.svg
+├── src
+│   ├── App.css
+│   ├── App.tsx
+│   ├── assets
+│   │   └── react.svg
+│   ├── components
+│   │   ├── ErrorBoundary.tsx
+│   │   ├── Layout.tsx
+│   │   ├── Loading.tsx
+│   │   └── Navbar.tsx
+│   ├── hooks
+│   │   └── useAuth.ts
+│   ├── index.css
+│   ├── libs
+│   │   └── axios.ts
+│   ├── main.tsx
+│   ├── pages
+│   │   ├── AuthCallback.tsx
+│   │   ├── Dashboard.tsx
+│   │   ├── Home.tsx
+│   │   ├── Login.tsx
+│   │   ├── admin
+│   │   │   ├── Analytic.tsx
+│   │   │   ├── ManageAdmin.tsx
+│   │   │   ├── ManageFaculty.tsx
+│   │   │   ├── ManageStudent.tsx
+│   │   │   └── ManageUser.tsx
+│   │   └── student
+│   │       ├── Application.tsx
+│   │       └── Project.tsx
+│   ├── providers
+│   │   ├── AuthProvider.tsx
+│   │   └── RoleBasedProvider.tsx
+│   ├── router
+│   │   ├── ProtectedRoutes.tsx
+│   │   ├── index.tsx
+│   │   └── roleRoutes.tsx
+│   ├── types
+│   │   ├── admin.ts
+│   │   ├── auth.ts
+│   │   ├── enum.ts
+│   │   ├── faculty.ts
+│   │   ├── project.ts
+│   │   └── student.ts
+│   └── vite-env.d.ts
+├── structure.txt
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts
+
+13 directories, 48 files

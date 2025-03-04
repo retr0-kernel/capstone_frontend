@@ -7,6 +7,10 @@ import ManageUser from "../pages/admin/ManageUser";
 import Analytic from "../pages/admin/Analytic";
 import Project from "../pages/student/Project";
 import Application from "../pages/student/Application";
+import GroupManagement from "../pages/student/GroupManagement";
+import ProjectManagement from "../pages/faculty/ProjectManagement";
+import ApplicationReview from "../pages/faculty/ApplicationReview";
+import GroupReview from "../pages/faculty/GroupReview";
 import { UserRole } from "../types/enum";
 
 const adminRoutes = [
@@ -57,7 +61,23 @@ const facultyRoutes = [
         path: "projects/manage",
         element: (
             <RoleBasedRoute allowedRoles={[UserRole.faculty]}>
-                <div>Manage Projects</div>
+                <ProjectManagement />
+            </RoleBasedRoute>
+        )
+    },
+    {
+        path: "applications/review",
+        element: (
+            <RoleBasedRoute allowedRoles={[UserRole.faculty]}>
+                <ApplicationReview />
+            </RoleBasedRoute>
+        )
+    },
+    {
+        path: "groups/review",
+        element: (
+            <RoleBasedRoute allowedRoles={[UserRole.faculty]}>
+                <GroupReview />
             </RoleBasedRoute>
         )
     }
@@ -77,6 +97,14 @@ const studentRoutes = [
         element: (
             <RoleBasedRoute allowedRoles={[UserRole.student]}>
                 <Application />
+            </RoleBasedRoute>
+        )
+    },
+    {
+        path: "groups",
+        element: (
+            <RoleBasedRoute allowedRoles={[UserRole.student]}>
+                <GroupManagement />
             </RoleBasedRoute>
         )
     }
