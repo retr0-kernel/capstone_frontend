@@ -25,7 +25,7 @@ export function useAuth() {
             }
 
             try {
-                const { data } = await apiClient.get < UserType |  null>('/api/auth/user/me');
+                const { data } = await apiClient.get < UserType |  null>('/auth/user/me');
                 console.log(data)
                 return data;
             } catch (error) {
@@ -43,7 +43,7 @@ export function useAuth() {
     });
 
     const googleLogin = () => {
-        window.location.href = 'http://localhost:5000/auth/google';
+        window.location.href = 'http://localhost:8000/auth/google';
     };
  
     const handleAuthCallback = async (token: string) => {

@@ -1,7 +1,6 @@
 import React from 'react';
 import { ArrowLeft, Clock, User, Users, Bookmark, BookOpen, Calendar, MessageSquare } from 'lucide-react';
-import { ProjectType, ProjectDomain, ProjectStatus, CourseType } from '../pages/student/Project';
-
+import { ProjectType, ProjectDomain, ProjectStatus, CourseType } from '../types/project-types';
 interface ProjectDetailProps {
   project: ProjectType;
   onClose: () => void;

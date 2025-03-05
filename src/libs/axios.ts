@@ -3,13 +3,15 @@ import axios from 'axios';
 
 export const apiClient = axios.create({
     baseURL: `${import.meta.env.VITE_BACKEND_URL}`,
-    withCredentials: true
+    withCredentials: true,
+    headers: {
+        'Content-Type': 'application/json'
+    }
 });
 
 // Add auth header interceptor
 apiClient.interceptors.request.use((config) => {
     const token = localStorage.getItem('accessToken');
-    console.log(token)
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
     }
@@ -27,3 +29,5 @@ apiClient.interceptors.response.use(
         return Promise.reject(error);
     }
 );
+
+export default apiClient;

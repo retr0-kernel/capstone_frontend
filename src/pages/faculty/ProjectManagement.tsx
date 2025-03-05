@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import { Plus, Edit, Trash, Eye, Filter, Check, X, ArrowRight, PlusCircle, Calendar, File, Tag } from 'lucide-react';
-import { ProjectDomain, ProjectStatus, CourseType } from '../student/Project';
+import { ProjectDomain, ProjectStatus, CourseType } from '../../types/project-types';
+import { Users } from 'lucide-react';
 
 // Interface for project data
 interface ProjectType {
@@ -718,7 +719,7 @@ const ProjectManagement: React.FC = () => {
                     Are you sure you want to delete the project "<span className="font-semibold">{selectedProject.title}</span>"? This action cannot be undone.
                   </p>
                   
-                  {(selectedProject.applicationCount > 0 || selectedProject.groupCount > 0) && (
+                  {((selectedProject.applicationCount || 0) > 0 || (selectedProject.groupCount || 0) > 0) && (
                     <div className="mt-4 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
                       <div className="flex">
                         <svg className="h-5 w-5 text-yellow-400 mr-2" viewBox="0 0 20 20" fill="currentColor">

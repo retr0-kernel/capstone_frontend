@@ -1,4 +1,4 @@
-// auth.ts
+// // auth.ts
 export enum UserRole {
     admin = 'admin',
     faculty = 'faculty',
@@ -6,23 +6,23 @@ export enum UserRole {
     user = 'user'
 }
 
-// project.ts
-export enum ProjectDomain {
-    AIML = 'AIML',
-    Cloud = 'Cloud',
-    Cyber = 'Cyber',
-    IOT = 'IOT'
-}
+// // project.ts
+// export enum ProjectDomain {
+//     AIML = 'AIML',
+//     Cloud = 'Cloud',
+//     Cyber = 'Cyber',
+//     IOT = 'IOT'
+// }
 
-export enum ProjectStatus {
-    draft = 'draft',
-    active = 'active',
-    completed = 'completed',
-    archived = 'archived'
-}
+// export enum ProjectStatus {
+//     draft = 'draft',
+//     active = 'active',
+//     completed = 'completed',
+//     archived = 'archived'
+// }
 
-export enum CourseType {
-    IDP = 'IDP',
-    UROP = 'UROP',
-    Capstone = 'Capstone'
-}
+// export enum CourseType {
+//     IDP = 'IDP',
+//     UROP = 'UROP',
+//     Capstone = 'Capstone'
+// }
